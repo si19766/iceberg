@@ -12,7 +12,7 @@ def LoadImages():
     return image_list
 
 # Randomly spawns Icebergs
-def SpawnIcebergs(NumIcebergs):
+def SpawnIcebergs(NumIcebergs, ShipList):
     ImageList = LoadImages()
     IcebergList = []
     for i in range(NumIcebergs):
@@ -20,6 +20,12 @@ def SpawnIcebergs(NumIcebergs):
         image = RandomImage(ImageList)
         Berg = Iceberg(BergDimensions, BergDimensions, BergCoords[0], BergCoords[1], image)
         IcebergList.append(Berg)
+        for ship in ShipList:
+            if Berg.y_coord - 200 <= ship.y_coord <= Berg.y_coord + 200:
+                if Berg.x_coord - 200 <= ship.x_coord <= Berg.x_coord + 200:
+                    if Berg in IcebergList:
+                        IcebergList.remove(Berg)
+
     return IcebergList
 
 
@@ -36,4 +42,5 @@ class Iceberg(object):
         self.x_dimen, self.y_dimen = x_dimen, y_dimen
         self.x_coord, self.y_coord = x_coord, y_coord
         self.image = TransformImage(image, x_dimen, y_dimen)
+        self.rect = pygame.Rect(x_coord, y_coord, x_dimen, y_dimen)
 
