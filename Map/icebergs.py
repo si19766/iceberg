@@ -8,7 +8,7 @@ def SpawnIcebergs(NumIcebergs):
     for i in range(NumIcebergs):
         BergDimensions, BergCoords = IcebergGen()  # from data_gen
         image = "Map/IcebergPics/image0.png"
-        Berg = Iceberg(BergDimensions[0], BergDimensions[1], BergCoords[0], BergCoords[1], image)
+        Berg = Iceberg(BergDimensions, BergDimensions, BergCoords[0], BergCoords[1], image)
         IcebergList.append(Berg)
     return IcebergList
 

@@ -13,9 +13,7 @@ class Map(object):
 
     def show_icebergs(self):
         for iceberg in self.iceberg_list:
-            iceberg_rect = pygame.Rect(iceberg.x_coord, iceberg.y_coord, iceberg.x_dimen, iceberg.y_dimen)
             self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
-            #pygame.draw.rect(self.screen, self.iceberg_colour, iceberg_rect)
 
     def Run(self):
         running = True
