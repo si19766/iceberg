@@ -1,10 +1,12 @@
 import pygame
 from Map.icebergs import SpawnIcebergs
-
+from tools import Loadify, TransformImage
 
 class Map(object):
-    def __init__(self, screen):
-        self.background_colour = (52, 180, 235)  # blue
+    """Class that shows the map with all corresponding objects"""
+    def __init__(self, screen, x_res = 1920, y_res = 1080):
+        self.background_image = Loadify("Background.png")
+        self.background_image = TransformImage(self.background_image, x_res, y_res)
         self.grid_colour = (0, 0, 0)  # black
         self.iceberg_colour = (255, 255, 255)
         self.iceberg_rect = pygame.Rect(50, 50, 50, 50)
@@ -19,7 +21,7 @@ class Map(object):
         running = True
         pygame.init()
         while running:
-            self.screen.fill(self.background_colour)
+            self.screen.blit(self.background_image, [0, 0])
             self.show_icebergs()
             pygame.display.update()
 

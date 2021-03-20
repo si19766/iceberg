@@ -1,16 +1,30 @@
 import pygame
 from DataGen.data_gen import IcebergGen
 from tools import Loadify, TransformImage
+import random
+
+def LoadImages():
+    """Function to speed up the loading of images
+    Loads all images before they are assigned to their classes"""
+    image_list = []
+    for num in range(6):
+        image_list.append(Loadify("Map/IcebergPics/image" + str(num) + ".png"))
 
 # Randomly spawns Icebergs
 def SpawnIcebergs(NumIcebergs):
     IcebergList = []
     for i in range(NumIcebergs):
         BergDimensions, BergCoords = IcebergGen()  # from data_gen
-        image = "Map/IcebergPics/image0.png"
+        image = RandomImage()
         Berg = Iceberg(BergDimensions, BergDimensions, BergCoords[0], BergCoords[1], image)
         IcebergList.append(Berg)
     return IcebergList
+
+
+def RandomImage():
+    randomint = random.randint(0, 5)
+    image = "Map/IcebergPics/image" + str(randomint) + ".png"
+    return image
 
 
 class Iceberg(object):
