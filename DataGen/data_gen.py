@@ -1,4 +1,5 @@
 import random
+import numpy
 
 # LIMITS
 IcebergX_CoordLim = 1920
@@ -18,11 +19,11 @@ def IcebergGen():
 
 # Randomly generates iceberg dimensions
 def DimensionGenerator (LowerLimit=LowerIceberg_DimenLim, UpperLimit=UpperIceberg_DimenLim):
-    dimension = random.randint(LowerLimit, UpperLimit)
+    dimension = int(numpy.random.normal(125, 25, None))
     return dimension
 
 # Creates a point randomly of the iceberg location
 def LocationGenerator (XLimit=IcebergX_CoordLim, YLimit=IcebergY_CoordLim):
     x = random.randint(0, XLimit)
     y = random.randint(0, YLimit)
-    return x,y
+    return x, y
