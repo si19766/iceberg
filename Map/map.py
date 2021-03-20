@@ -20,11 +20,11 @@ class Map(object):
         """Creates the grid"""
         """Horizontal line"""
         for num in range(7):
-            pygame.draw.line(self.screen, self.BLACK, (0, (1080/7) * (num + 1)), (1920, (1080/7) * (num + 1)), 2)
+            pygame.draw.line(self.screen, self.BLACK, (0, (1080/8 * (num + 1))), (1920, (1080/8 * (num + 1))), 2)
 
         """Vertical line"""
         for num in range(9):
-            pygame.draw.line(self.screen, self.BLACK, ((1920/9) * (num + 1), 0), ((1920/9) * (num + 1), 1080), 2)
+            pygame.draw.line(self.screen, self.BLACK, (((1920/10) * (num + 1)), 0), (((1920/10) * (num + 1)), 1080), 2)
 
     def show_objects(self):
         for iceberg in self.iceberg_list:
