@@ -1,14 +1,16 @@
 import pygame
-from data_gen.py import IcebergGen()
+from DataGen.data_gen import IcebergGen
+
 
 # Randomly spawns Icebergs
 def SpawnIcebergs(NumIcebergs):
     IcebergList = []
     for i in range(NumIcebergs):
         BergDimensions, BergCoords = IcebergGen()
-        Berg = Iceberg(BergDimensions(0), BergDimensions(1), BergCoords(0), BergCoords(1))
+        Berg = Iceberg(BergDimensions[0], BergDimensions[1], BergCoords[0], BergCoords[1])
         IcebergList.append(Berg)
     return IcebergList
+
 
 class Iceberg(object):
     def __init__(self, x_dimen, y_dimen, x_coord, y_coord):
