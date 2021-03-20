@@ -1,6 +1,6 @@
 import pygame
 from DataGen.data_gen import IcebergGen
-from tools import Loadify
+from tools import Loadify, TransformImage
 
 # Randomly spawns Icebergs
 def SpawnIcebergs(NumIcebergs):
@@ -19,4 +19,5 @@ class Iceberg(object):
         self.x_dimen, self.y_dimen = x_dimen, y_dimen
         self.x_coord, self.y_coord = x_coord, y_coord
         self.image = Loadify(image)
+        self.image = TransformImage(self.image, x_dimen, y_dimen)
 
