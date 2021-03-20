@@ -12,7 +12,7 @@ class Map(object):
         self.grid_colour = (0, 0, 0)  # black
         self.iceberg_colour = (255, 255, 255)
         self.iceberg_rect = pygame.Rect(50, 50, 50, 50)
-        self.screen = screen  # imported from menu
+        self.screen = screen  # imported from Menu
         self.iceberg_list = SpawnIcebergs(30)  # creates a list
         self.ship_list = SpawnShips(1) # creates a list
 

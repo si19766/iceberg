@@ -1,11 +1,11 @@
 import pygame
 from tools import Loadify, TransformImage, RenderFont, ButtonCentre, ButtonSpacing
 from Map.map import Map
-from menu.savesettings import GetRes
+from Menu.savesettings import GetRes
 
 class Menu():
     def __init__(self, screen):
-        self.background_image = Loadify("menu/iceburg.jpg")
+        self.background_image = Loadify("Menu/iceburg.jpg")
         self.background_image = TransformImage(self.background_image, int(GetRes()[0]), int(GetRes()[1]))
         self.screen = screen
         self.text = "Start Simulation"
