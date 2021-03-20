@@ -37,7 +37,7 @@ class Menu():
                     pygame.draw.rect(self.screen, (0, 255, 0), button)
                     if click:
                         if button_list.index(button) == 0:
-                            Map.Run()
+                            Map(self.screen).Run()
 
             for num in range(number_of_buttons):
                 if num == 0:
