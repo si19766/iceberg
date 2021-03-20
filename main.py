@@ -1,6 +1,6 @@
 import pygame
-from menu.menu import Menu
-from menu.savesettings import GetRes
+from Menu.menu import Menu
+from Menu.savesettings import GetRes
 
 pygame.init()
 width = int(GetRes()[0])

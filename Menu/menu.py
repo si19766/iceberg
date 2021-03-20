@@ -1,8 +1,8 @@
 import pygame
 from tools import Loadify, TransformImage, RenderFont, ButtonCentre, ButtonSpacing
 from Map.map import Map
-from menu.savesettings import GetRes
-from menu.parameter_menu import ParameterMenu
+from Menu.savesettings import GetRes
+from Menu.parameter_menu import ParameterMenu
 
 
 class Menu():

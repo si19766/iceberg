@@ -17,7 +17,7 @@ class Map(object):
         self.iceberg_rect = pygame.Rect(50, 50, 50, 50)
         self.screen = screen  # imported from Menu
         self.ship_list = SpawnShips(3) # creates a list
-        self.iceberg_list = SpawnIcebergs(100,self.ship_list)  # creates a list
+        self.iceberg_list = SpawnIcebergs(40,self.ship_list)  # creates a list
         self.rect_list = []
         self.vector_list = []
 
@@ -60,7 +60,7 @@ class Map(object):
         for ship in self.ship_list:
             self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
             for sonar in ship.sonar_list:
-                pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x,sonar.rect_y], 5)
+                pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x,sonar.rect_y], 2)
                 sonar.Update(self.iceberg_list)
 
 
