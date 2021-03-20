@@ -10,11 +10,11 @@ IcebergY_DimenLim = 10
 def IcebergGen():
     BergDimensions = DimensionGenerator()
     BergCoords = LocationGenerator()
-    if BergCoords[0]+BergDimensions[0] > IcebergX_CoordLim: # Stops icebergs going off the screen
+    """if BergCoords[0]+BergDimensions[0] > IcebergX_CoordLim: # Stops icebergs going off the screen
         BergCoords[0] -= BergDimensions[0]
     if BergCoords[1]+BergDimensions[1] > IcebergY_CoordLim:
-        BergCoords[1] -= BergDimensions[1]
-    return BergDimensions,BergCoords
+        BergCoords[1] -= BergDimensions[1]"""
+    return BergDimensions, BergCoords
 
 # Randomly generates iceberg dimensions
 def DimensionGenerator (XLimit=IcebergX_DimenLim, YLimit=IcebergY_DimenLim):
