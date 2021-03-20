@@ -4,9 +4,10 @@ from Map.map import Map
 from menu.savesettings import GetRes
 from menu.parameter_menu import ParameterMenu
 
+
 class Menu():
     def __init__(self, screen):
-        self.background_image = Loadify("menu/iceburg.jpg")
+        self.background_image = Loadify("Menu/iceburg.jpg")
         self.background_image = TransformImage(self.background_image, int(GetRes()[0]), int(GetRes()[1]))
         self.screen = screen
         self.text = "Start Simulation"
