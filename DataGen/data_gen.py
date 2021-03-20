@@ -17,8 +17,12 @@ def IcebergGen():
         BergCoords[1] -= BergDimensions[1]"""
     return BergDimensions, BergCoords
 
+def ShipGen():
+    ShipCoords = LocationGenerator()
+    return ShipCoords
+
 # Randomly generates iceberg dimensions
-def DimensionGenerator (LowerLimit=LowerIceberg_DimenLim, UpperLimit=UpperIceberg_DimenLim):
+def DimensionGenerator ():
     dimension = int(numpy.random.normal(125, 25, None))
     return dimension
 
