@@ -1,5 +1,6 @@
 import pygame
 from Map.icebergs import SpawnIcebergs
+from Map.ships import SpawnShips
 from tools import Loadify, TransformImage
 
 class Map(object):
@@ -13,6 +14,7 @@ class Map(object):
         self.iceberg_rect = pygame.Rect(50, 50, 50, 50)
         self.screen = screen  # imported from menu
         self.iceberg_list = SpawnIcebergs(30)  # creates a list
+        self.ship_list = SpawnShips(1) # creates a list
 
     def create_grid(self):
         """Creates the grid"""
@@ -24,9 +26,11 @@ class Map(object):
         for num in range(9):
             pygame.draw.line(self.screen, self.BLACK, ((1920/9) * (num + 1), 0), ((1920/9) * (num + 1), 1080), 2)
 
-    def show_icebergs(self):
+    def show_objects(self):
         for iceberg in self.iceberg_list:
             self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
+        for ship in self.ship_list:
+            self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
 
 
     def Run(self):
@@ -34,7 +38,7 @@ class Map(object):
         pygame.init()
         while running:
             self.screen.blit(self.background_image, [0, 0])
-            self.show_icebergs()
+            self.show_objects()
             self.create_grid()
             pygame.display.update()
 
