@@ -1,10 +1,10 @@
 import random
 
 # LIMITS
-IcebergX_CoordLim = 1000
-IcebergY_CoordLim = 1000
-IcebergX_DimenLim = 5
-IcebergY_DimenLim = 5
+IcebergX_CoordLim = 1920
+IcebergY_CoordLim = 1080
+IcebergX_DimenLim = 10
+IcebergY_DimenLim = 10
 
 # FUNCTIONS
 def IcebergGen():
