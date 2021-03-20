@@ -6,7 +6,7 @@ from DataGen.data_gen import IcebergGen
 def SpawnIcebergs(NumIcebergs):
     IcebergList = []
     for i in range(NumIcebergs):
-        BergDimensions, BergCoords = IcebergGen()
+        BergDimensions, BergCoords = IcebergGen()  # from data_gen
         Berg = Iceberg(BergDimensions[0], BergDimensions[1], BergCoords[0], BergCoords[1])
         IcebergList.append(Berg)
     return IcebergList
