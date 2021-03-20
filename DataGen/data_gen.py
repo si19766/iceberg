@@ -1,18 +1,29 @@
 import random
 
+# LIMITS
+IcebergX_CoordLim = 1000
+IcebergY_CoordLim = 1000
+IcebergX_DimenLim = 5
+IcebergY_DimenLim = 5
+
+# FUNCTIONS
 def IcebergGen():
     BergDimensions = DimensionGenerator()
     BergCoords = LocationGenerator()
+    if BergCoords[0]+BergDimensions[0] > IcebergX_CoordLim: # Stops icebergs going off the screen
+        BergCoords[0] -= BergDimensions[0]
+    if BergCoords[1]+BergDimensions[1] > IcebergY_CoordLim:
+        BergCoords[1] -= BergDimensions[1]
     return BergDimensions,BergCoords
 
 # Randomly generates iceberg dimensions
-def DimensionGenerator (XLimit=10, YLimit=10):
+def DimensionGenerator (XLimit=IcebergX_DimenLim, YLimit=IcebergY_DimenLim):
     x = random.randint(0, XLimit)
     y = random.randint(0, YLimit)
     return x,y
 
 # Creates a point randomly of the iceberg location
-def LocationGenerator (XLimit=1000, YLimit=1000):
+def LocationGenerator (XLimit=IcebergX_CoordLim, YLimit=IcebergY_CoordLim):
     x = random.randint(0, XLimit)
     y = random.randint(0, YLimit)
     return x,y
