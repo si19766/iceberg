@@ -2,6 +2,7 @@ import pygame
 from tools import Loadify, TransformImage, RenderFont, ButtonCentre, ButtonSpacing
 from Map.map import Map
 from menu.savesettings import GetRes
+from menu.parameter_menu import ParameterMenu
 
 class Menu():
     def __init__(self, screen):
@@ -38,14 +39,15 @@ class Menu():
                     if click:
                         if button_list.index(button) == 0:
                             Map(self.screen).Run()
+                        if button_list.index(button) == 1:
+                            ParameterMenu(self.screen, self.LBLUE).DisplayWindow()
+
 
             for num in range(number_of_buttons):
                 if num == 0:
                     self.text = "Start Simulation"
                 elif num == 1:
                     self.text = ".."
-                else:
-                    self.text = "..."
                 rendered_font = RenderFont(self.font1, self.text, self.BLACK)
                 self.screen.blit(rendered_font, [ButtonCentre(button_width), ButtonSpacing(number_of_buttons) * (num+1) - (button_height/2)])
 
