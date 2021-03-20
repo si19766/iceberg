@@ -7,4 +7,4 @@ class Map(object):
         self.screen = screen  # imported from menu
 
     def Run(self):
-        pass
+        self.screen.fill(self.background_colour)
