@@ -1,5 +1,5 @@
 import pygame
-from icebergs import SpawnIcebergs
+from Map.icebergs import SpawnIcebergs
 
 
 class Map(object):
@@ -34,6 +34,3 @@ class Map(object):
         pygame.quit()
         quit()
 
-
-screen = pygame.display.set_mode([1920, 1080], pygame.FULLSCREEN)
-Map(screen).Run()
