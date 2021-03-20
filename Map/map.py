@@ -5,6 +5,7 @@ from tools import Loadify, TransformImage
 class Map(object):
     """Class that shows the map with all corresponding objects"""
     def __init__(self, screen, x_res = 1920, y_res = 1080):
+        self.BLACK = (0, 0, 0)
         self.background_image = Loadify("Background.png")
         self.background_image = TransformImage(self.background_image, x_res, y_res)
         self.grid_colour = (0, 0, 0)  # black
@@ -13,9 +14,20 @@ class Map(object):
         self.screen = screen  # imported from menu
         self.iceberg_list = SpawnIcebergs(30)  # creates a list
 
+    def create_grid(self):
+        """Creates the grid"""
+        """Horizontal line"""
+        for num in range(7):
+            pygame.draw.line(self.screen, self.BLACK, (0, (1080/7) * (num + 1)), (1920, (1080/7) * (num + 1)), 2)
+
+        """Vertical line"""
+        for num in range(9):
+            pygame.draw.line(self.screen, self.BLACK, ((1920/9) * (num + 1), 0), ((1920/9) * (num + 1), 1080), 2)
+
     def show_icebergs(self):
         for iceberg in self.iceberg_list:
             self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
+
 
     def Run(self):
         running = True
@@ -23,6 +35,7 @@ class Map(object):
         while running:
             self.screen.blit(self.background_image, [0, 0])
             self.show_icebergs()
+            self.create_grid()
             pygame.display.update()
 
             for event in pygame.event.get():
