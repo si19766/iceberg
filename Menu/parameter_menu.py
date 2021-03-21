@@ -1,7 +1,7 @@
 import pygame
 from tools import RenderFont
 
-
+#Input parameters which are saved in an external file.
 class ParameterMenu(object):
     def __init__(self, screen, LBLUE):
         self.OnParameterMenu = True

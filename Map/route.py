@@ -1,5 +1,6 @@
 import math
 
+#Define how fast to move ship
 def SetSailSpeed(ship):
     x_coord, y_coord = ship.x_coord, ship.y_coord
     x_dest, y_dest = ship.x_destination, ship.y_destination

@@ -2,6 +2,7 @@ import pygame
 from Menu.menu import Menu
 from Menu.savesettings import GetRes
 
+#Code to initialise Menu and program
 pygame.init()
 width = int(GetRes()[0])
 height = int(GetRes()[1])

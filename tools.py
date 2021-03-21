@@ -1,9 +1,10 @@
 import pygame
 
+#Load an image
 def Loadify(img):
     return pygame.image.load(img).convert_alpha()
 
-
+#Transform the image (scale up or scale down)
 def TransformImage(img, x, y):
     return pygame.transform.scale(img, [x,y])
 

@@ -4,6 +4,7 @@ from Map.map import Map
 from Menu.savesettings import GetRes
 from Menu.parameter_menu import ParameterMenu
 
+#Main menu that everything is accessed from
 class Menu():
     def __init__(self, screen):
         self.background_image = Loadify("Menu/iceburg.jpg")

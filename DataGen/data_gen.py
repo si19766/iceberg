@@ -8,11 +8,13 @@ LowerIceberg_DimenLim = 1
 UpperIceberg_DimenLim = 250
 
 # FUNCTIONS
+#Generate an iceberg
 def IcebergGen():
     BergDimensions = DimensionGenerator()
     BergCoords = LocationGenerator()
     return BergDimensions, BergCoords
 
+#Generate ship co-ordinates
 def ShipGen():
     ShipCoords = LocationGenerator()
     return ShipCoords

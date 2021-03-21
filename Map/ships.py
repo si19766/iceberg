@@ -2,6 +2,8 @@ import pygame
 import math
 from DataGen.data_gen import LocationGenerator
 from tools import Loadify, TransformImage
+
+#Function to generate a specific list of ships based on input parameters
 def SpawnShips(NumShips):
     ShipList = []
     for i in range(NumShips):
@@ -13,6 +15,7 @@ def SpawnShips(NumShips):
         ShipList.append(Boat)
     return ShipList
 
+#Class ship which has a sub-class called sonar, as well as speed and location.
 class Ship(object):
     def __init__(self, x_coord, y_coord, x_dest, y_dest, frequency, image, colour):
         self.x_dimen, self.y_dimen = 25,90
@@ -29,7 +32,7 @@ class Ship(object):
         self.detection_points = []
         self.x_finaldestination, self.y_finaldestination = x_dest, y_dest
         self.x_destination, self. y_destination = x_coord, y_coord
-
+#Starts ping with 900 sonar blips
     def scan(self):
         # Generate a ring of lasers around the ship which are moving away from the ship at a certain angle.
         for i in range(900):
@@ -40,6 +43,7 @@ class Ship(object):
         self.x_coord += self.x_speed
         self.y_coord += self.y_speed
 
+#Class with the unique proporties of a sonar blip, including their location, and their frequency (to prevent confusion with other ships). Belongs to a ship
 class sonar(object):
 
     def __init__(self, x, y, angle, frequency):

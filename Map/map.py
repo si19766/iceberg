@@ -5,7 +5,6 @@ from Map.ships import SpawnShips
 from Map.ShadowLayer import FogOfWar
 from Map.route import SetSailSpeed
 from tools import Loadify, TransformImage
-from Map.icebergs import Iceberg
 import math
 import random
 import numpy
@@ -37,6 +36,7 @@ class Map(object):
         for ship in self.ship_list:
             ship.scan()
 
+#Create gridlines
     def create_grid(self):
         """Creates the grid"""
         """Horizontal line"""
@@ -47,6 +47,7 @@ class Map(object):
         for num in range(9):
             pygame.draw.line(self.screen, self.BLACK, (((1920/10) * (num + 1)), 0), (((1920/10) * (num + 1)), 1080), 2)
 
+
     def define_rects(self):
         x_length = 1920/10
         y_length = 1080/8
@@ -56,35 +57,40 @@ class Map(object):
                 rect_corners.append(pygame.Rect(x_num*x_length, y_num*y_length, x_length, y_length))
                 self.rect_list.append(rect_corners)
 
+
     def define_vectors(self):
         for num in range(80):
             x_vec = random.randint(0, 10)
             y_vec = random.randint(0, 10)
             self.rect_list[num].append(numpy.array([x_vec, y_vec]))
 
+
+#Shows the fog of war and sets updates opacity
     def ShowFOW(self):
         for cloud in self.cloud_list:
             cloud.image.set_alpha(cloud.opacity)
             self.screen.blit(cloud.image, [cloud.x_coord, cloud.y_coord])
 
+
     def show_objects(self):
         for iceberg in self.iceberg_list:
+            #Refresh the location of icebergs
             self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
             for rect, vector in self.rect_list:
                 if rect.collidepoint(iceberg.x_coord, iceberg.y_coord):
                     iceberg.x_vec = vector[0]
                     iceberg.y_vec = vector[1]
-
+            #Move icebergs
             iceberg.x_coord += iceberg.x_vec * 0.005
             iceberg.rect.x = iceberg.x_coord
             iceberg.y_coord += iceberg.y_vec * 0.005
             iceberg.rect.y = iceberg.y_coord
 
         for ship in self.ship_list:
-            self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
-            if  ship.x_destination -10 <= ship.x_coord <- ship.x_destination +10:
-                if ship.y_destination - 10 <= ship.y_coord < - ship.y_destination + 10:
-                    PENIS=True
+            self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])#           if  ship.x_destination -10 <= ship.x_coord <- ship.x_destination +10:
+#                if ship.y_destination - 10 <= ship.y_coord < - ship.y_destination + 10:
+ #                   =True
+            #Update and move sonar blips
             for sonar in ship.sonar_list:
                 sonar.Update(self.iceberg_list)
                 if sonar.final_coords != [0,0] and sonar.change_x == 0 and sonar.change_y == 0:
@@ -96,11 +102,13 @@ class Map(object):
                         if sonar.rect_y-50 <= cloud.y_coord <= sonar.rect_y+50:
                             cloud.opacity -= 30
                             if cloud.opacity < 50:
+                                #to boost performance, remove the transparent clouds
                                 self.cloud_list.remove(cloud)
 
             SetSailSpeed(ship)
             ship.sail()
 
+    #Repeating loop to keep objects on map active and updating
     def Run(self):
         running = True
         pygame.init()
@@ -116,6 +124,7 @@ class Map(object):
             if show == True:
                 for iceberg in self.iceberg_list:
                     self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
+            #Allows manual ping
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_w:
@@ -128,6 +137,8 @@ class Map(object):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         running = False
+
+            #Pings after a set amount of ticks
             count += 1
             if count == 400:
                 for ship in self.ship_list:
@@ -137,6 +148,7 @@ class Map(object):
                     ship.sonar_list = []
                     ship.scan()
                 count = 0
+            #Sets tickrate
             self.clock.tick(100)
             pygame.display.update()
 
