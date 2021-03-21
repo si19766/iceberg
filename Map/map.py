@@ -107,7 +107,7 @@ class Map(object):
                                 self.cloud_list.remove(cloud)
 
             SetSailSpeed(ship)
-            ship.sail()
+            '''ship.sail()'''
 
     #Repeating loop to keep objects on map active and updating
     def Run(self):
@@ -122,8 +122,8 @@ class Map(object):
             self.show_objects()
             self.create_grid()
             self.ShowFOW()
-            for ship in self.ship_list:
-                pygame.draw.circle(self.screen, self.GREEN, [ship.x_finaldestination, ship.y_finaldestination], 5)  # Draws endpoint
+            '''for ship in self.ship_list:
+                pygame.draw.circle(self.screen, self.GREEN, [ship.x_finaldestination, ship.y_finaldestination], 5)  # Draws endpoint'''
             if show == True:
                 for iceberg in self.iceberg_list:
                     self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
