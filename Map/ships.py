@@ -19,7 +19,9 @@ class Ship(object):
         self.x_dimen, self.y_dimen = 25,90
         self.x_coord, self.y_coord = x_coord, y_coord
         self.x_speed, self.y_speed = 0,0
-        self.x_destination, self. y_destination = x_dest, y_dest
+        self.max_speed = 0.1
+        self.x_destination, self. y_destination = x_coord, y_coord
+        self.x_finaldestination, self.x_finaldestination = x_dest, y_dest
         self.sailing = False
         self.image = Loadify(image)
         self.image = TransformImage(self.image, self.x_dimen, self.y_dimen)

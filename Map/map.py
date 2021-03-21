@@ -1,6 +1,7 @@
 import pygame
 from Map.icebergs import SpawnIcebergs
 from Map.ships import SpawnShips
+from Map.route import SetSailSpeed
 from tools import Loadify, TransformImage
 from Map.icebergs import Iceberg
 import math
@@ -76,6 +77,9 @@ class Map(object):
                     pygame.draw.circle(self.screen, ship.colour, sonar.final_coords, 2)
                 else:
                     pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x, sonar.rect_y], 2)
+
+            SetSailSpeed(ship)
+            ship.sail()
 
     def Run(self):
         running = True
