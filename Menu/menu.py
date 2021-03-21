@@ -18,7 +18,6 @@ class Menu():
 
     def MainMenu(self):
 
-        rendered_font = RenderFont(self.font1, self.text, self.BLACK)
         button_width = 200
         button_height = 50
         number_of_buttons = 2
