@@ -6,6 +6,7 @@ from Map.icebergs import Iceberg
 import math
 import random
 import numpy
+from Menu.parameter_menu import ParameterMenu
 
 class Map(object):
     """Class that shows the map with all corresponding objects"""
@@ -18,9 +19,10 @@ class Map(object):
         self.iceberg_colour = (255, 255, 255)
         self.iceberg_rect = pygame.Rect(50, 50, 50, 50)
         self.screen = screen  # imported from Menu
-        self.ship_list = SpawnShips(3) # creates a list
-        self.iceberg_list = SpawnIcebergs(40,self.ship_list)  # creates a list
-        self.gird_list = []
+        pmen = ParameterMenu(0,0)
+        self.ship_list = SpawnShips(pmen.boatNumber) # creates a list
+        self.iceberg_list = SpawnIcebergs(pmen.icebergNumber, self.ship_list)  # creates a list
+        self.rect_list = []
         self.vector_list = []
         self.rect_list = []
 
@@ -63,7 +65,9 @@ class Map(object):
                     iceberg.y_vec = vector[1]
 
             iceberg.x_coord += iceberg.x_vec * 0.005
+            iceberg.rect.x = iceberg.x_coord
             iceberg.y_coord += iceberg.y_vec * 0.005
+            iceberg.rect.y = iceberg.y_coord
 
         for ship in self.ship_list:
             self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
@@ -91,7 +95,9 @@ class Map(object):
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_w:
-                        show = True
+                        for ship in self.ship_list:
+                            ship.sonar_list = []
+                            ship.scan()
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_w:
                         show = False
@@ -105,6 +111,7 @@ class Map(object):
                     ship.scan()
             self.clock.tick(100)
             pygame.display.update()
+
         pygame.quit()
         quit()
 

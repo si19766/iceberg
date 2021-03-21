@@ -36,8 +36,8 @@ class sonar(object):
 
     def __init__(self, x, y, angle, frequency):
         self.angle = angle
-        self.x_speed = math.cos(self.angle)*15
-        self.y_speed = math.sin(self.angle)*15
+        self.x_speed = math.cos(self.angle)*10
+        self.y_speed = math.sin(self.angle)*10
         self.spawn_x = x
         self.spawn_y = y
         # Passed in Location
@@ -61,11 +61,11 @@ class sonar(object):
                 self.change_y = self.y_speed * -1
                 self.counter_start = True
                 self.final_coords= [self.rect_x,self.rect_y]
+        self.rect_x -= self.change_x
+        self.rect_y -= self.change_y
         if self.change_x == (self.x_speed * -1) and (self.spawn_x + 10) >= self.rect_x >= (self.spawn_x - 10):
             if self.change_y == (self.y_speed * -1) and (self.spawn_y + 10) >= self.rect_y >= (self.spawn_y - 10):
                 self.change_x = 0
                 self.change_y = 0
         if self.counter_start:
             self.counter += 1
-        self.rect_x -= self.change_x
-        self.rect_y -= self.change_y
