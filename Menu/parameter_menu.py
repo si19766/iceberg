@@ -1,4 +1,5 @@
 import pygame
+from tools import RenderFont
 
 
 class ParameterMenu(object):
@@ -12,8 +13,8 @@ class ParameterMenu(object):
         self.width, self.height = pygame.display.get_surface().get_size()
         self.bar_list = []
         self.slider_list = []
-        self.boatNumber = 5
-        self.icebergNumber = 20
+        self.boatNumber = 2
+        self.icebergNumber = 50
         self.height_divider = 8
         self.slider_width = self.width / 2
         self.slider_height = 10
@@ -21,6 +22,7 @@ class ParameterMenu(object):
         self.bar_limit = []
         self.slider_left_coord = (self.width / 2) - (self.slider_width / 2)
         self.slider_right_coord = (self.width / 2) + (self.slider_width / 2)
+        self.font1 = pygame.font.SysFont('Ariel', 35)
 
     def SliderMove(self, new_x, slider_number):
 
@@ -30,22 +32,31 @@ class ParameterMenu(object):
             self.slider_list[1] = pygame.Rect(int(new_x) - 10, int(((self.height / self.height_divider) * 4)), 20, 20)
 
     def Slider_Calc(self):
-        boatInc = self.boatNumber * self.slider_width
-        icebergInc = self.icebergNumber * self.slider_width
 
-        boatSliderPos = ((self.width / 2) - (self.slider_width / 2)) + boatInc
-        icebergSliderPos = ((self.width / 2) - (self.slider_width / 2)) + icebergInc
+        centre = (self.width / 2)
 
-        return boatSliderPos, icebergSliderPos
+        return centre
+
+    def changeBoatNum(self, num):
+        rendered_font = RenderFont(self.font1, str(num), self.BLACK)
+        self.screen.blit(rendered_font, [1500,250])
+        pygame.display.update()
+
+    def changeIcebergNum(self, num):
+        rendered_font = RenderFont(self.font1, str(num), self.BLACK)
+        self.screen.blit(rendered_font, [1500, 550])
+        pygame.display.update()
 
     def NewValue(self, new_x, slider):
-        percentage_bar = (new_x - self.slider_left_coord) / (self.slider_right_coord - self.slider_left_coord)
+        percentage = ((new_x - self.slider_left_coord) / (self.slider_right_coord - self.slider_left_coord))
         if slider == 0:
-            self.boatNumber = percentage_bar
-            # ChangeMasterLevel(self.boatNumber, self.icebergNumber)
+            self.boatNumber = int(4*percentage)
+            self.changeBoatNum(self.boatNumber)
+            self.changeIcebergNum(self.icebergNumber)
         if slider == 1:
-            self.icebergNumber = percentage_bar
-            # ChangeMusicLevel(self.icebergNumber)
+            self.icebergNumber = int(percentage * 100)
+            self.changeBoatNum(self.boatNumber)
+            self.changeIcebergNum(self.icebergNumber)
 
     def Control(self, click):
         """Function that lets user adjust volume levels"""
@@ -129,15 +140,21 @@ class ParameterMenu(object):
     def SlidersInit(self):
 
         self.slider_list = [
-            pygame.Rect(100, 200, 20, 20),
-            pygame.Rect(int(self.Slider_Calc()[1]), int(((self.height / self.height_divider) * 4)), 20, 20)]
+            pygame.Rect(int(self.Slider_Calc()), int(((self.height / self.height_divider) * 2)), 20, 20),
+            pygame.Rect(int(self.Slider_Calc()), int(((self.height / self.height_divider) * 4)), 20, 20)]
         print(self.slider_list)
+
+
+
+
 
     def DisplayWindow(self):
         self.Bars()
         self.SlidersInit()
         click = False
+        self.screen.fill(self.LBLUE)
+        self.changeIcebergNum(self.icebergNumber)
+        self.changeBoatNum(self.boatNumber)
         while self.OnParameterMenu:
-            self.screen.fill(self.LBLUE)
             click = self.Control(click)
             pygame.display.update()

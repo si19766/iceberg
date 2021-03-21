@@ -17,7 +17,7 @@ class Map(object):
         self.iceberg_rect = pygame.Rect(50, 50, 50, 50)
         self.screen = screen  # imported from Menu
         self.ship_list = SpawnShips(3) # creates a list
-        self.iceberg_list = SpawnIcebergs(40,self.ship_list)  # creates a list
+        self.iceberg_list = SpawnIcebergs(Menu.parameter_menu.ParameterMenu.icebergNumber, self.ship_list)  # creates a list
         self.rect_list = []
         self.vector_list = []
 
