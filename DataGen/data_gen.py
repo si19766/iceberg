@@ -2,8 +2,8 @@ import random
 import numpy
 
 # LIMITS
-IcebergX_CoordLim = 1920
-IcebergY_CoordLim = 1080
+X_CoordLim = 1920
+Y_CoordLim = 1080
 LowerIceberg_DimenLim = 50
 UpperIceberg_DimenLim = 200
 
@@ -23,7 +23,7 @@ def DimensionGenerator ():
     return dimension
 
 # Creates a point randomly
-def LocationGenerator (XLimit=IcebergX_CoordLim, YLimit=IcebergY_CoordLim):
+def LocationGenerator (XLimit=X_CoordLim, YLimit=Y_CoordLim):
     x = random.randint(0, XLimit)
     y = random.randint(0, YLimit)
     return x, y
