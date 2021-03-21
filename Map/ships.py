@@ -20,9 +20,8 @@ class Ship(object):
         self.x_coord, self.y_coord = x_coord, y_coord
         self.x_speed, self.y_speed = 0,0
         self.max_speed = 0.1
-        self.x_destination, self. y_destination = x_coord, y_coord
+        self.x_destination, self. y_destination = x_dest, y_dest#x_coord, y_coord
         self.x_finaldestination, self.x_finaldestination = x_dest, y_dest
-        self.sailing = False
         self.image = Loadify(image)
         self.image = TransformImage(self.image, self.x_dimen, self.y_dimen)
         self.frequency = frequency
@@ -38,12 +37,8 @@ class Ship(object):
             self.sonar_list.append(sonar(self.x_coord+11, self.y_coord+25, shoot_angle, self.frequency))
 
     def sail(self):
-        if self.sailing == False:
-            self.sailing = True
-            self.x_coord += self.x_speed
-            self.y_coord += self.y_speed
-        if self.x_coord == self.x_destination and self.y_coord == self.y_destination:
-            self.sailing = False
+        self.x_coord += self.x_speed
+        self.y_coord += self.y_speed
 
 class sonar(object):
 
