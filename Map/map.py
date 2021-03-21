@@ -78,7 +78,6 @@ class Map(object):
                 else:
                     pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x, sonar.rect_y], 2)
 
-
     def Run(self):
         running = True
         pygame.init()

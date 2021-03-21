@@ -25,6 +25,7 @@ class Ship(object):
         self.sonar_list = []
         self.detection_list = []
         self.detection_points = []
+
     def scan(self):
         # Generate a ring of lasers around the ship which are moving away from the ship at a certain angle.
         for i in range(1800):
@@ -40,6 +41,7 @@ class sonar(object):
         self.y_speed = math.sin(self.angle)*10
         self.spawn_x = x
         self.spawn_y = y
+
         # Passed in Location
         self.rect_x = x
         self.rect_y = y
@@ -53,8 +55,9 @@ class sonar(object):
         self.counter = 0
         self.counter_start = False
         self.final_coords = [0,0]
+
     def Update(self, Iceberg_List):
-        # New position for bullet
+        # New position for iceberg
         for bergs in Iceberg_List:
             if bergs.rect.collidepoint(self.rect_x, self.rect_y):
                 self.change_x = self.x_speed * -1

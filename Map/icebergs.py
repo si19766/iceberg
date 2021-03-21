@@ -28,13 +28,11 @@ def SpawnIcebergs(NumIcebergs, ShipList):
 
     return IcebergList
 
-
 def RandomImage(ImageList):
     """chooses a random image from the list"""
     randomint = random.randint(0, 18)
     image = ImageList[randomint]
     return image
-
 
 class Iceberg(object):
     def __init__(self, x_dimen, y_dimen, x_coord=0, y_coord=0, image=0):
