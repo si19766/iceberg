@@ -47,7 +47,6 @@ class Map(object):
                 rect_corners = []
                 rect_corners.append(pygame.Rect(x_num*x_length, y_num*y_length, x_length, y_length))
                 self.rect_list.append(rect_corners)
-        print(self.rect_list)
 
     def define_vectors(self):
         for num in range(80):
@@ -60,7 +59,6 @@ class Map(object):
             self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
             for rect, vector in self.rect_list:
                 if rect.collidepoint(iceberg.x_coord, iceberg.y_coord):
-                    print(vector[0])
                     iceberg.x_vec = vector[0]
                     iceberg.y_vec = vector[1]
 
@@ -82,6 +80,7 @@ class Map(object):
         self.define_rects()
         self.define_vectors()
         show = False
+        count = 0
         while running:
             self.screen.blit(self.background_image, [0, 0])
             self.show_objects()
@@ -99,6 +98,11 @@ class Map(object):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         running = False
+            count += 1
+            if count == 400:
+                for ship in self.ship_list:
+                    ship.sonar_list = []
+                    ship.scan()
             self.clock.tick(100)
             pygame.display.update()
         pygame.quit()

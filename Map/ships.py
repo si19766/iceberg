@@ -36,8 +36,8 @@ class sonar(object):
 
     def __init__(self, x, y, angle, frequency):
         self.angle = angle
-        self.x_speed = math.cos(self.angle)*5
-        self.y_speed = math.sin(self.angle)*5
+        self.x_speed = math.cos(self.angle)*15
+        self.y_speed = math.sin(self.angle)*15
         self.spawn_x = x
         self.spawn_y = y
         # Passed in Location
