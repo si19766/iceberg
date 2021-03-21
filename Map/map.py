@@ -1,6 +1,7 @@
 import pygame
 from Map.icebergs import SpawnIcebergs
 from Map.ships import SpawnShips
+from Map.ShadowLayer import FogOfWar
 from tools import Loadify, TransformImage
 from Map.icebergs import Iceberg
 import math
@@ -25,8 +26,12 @@ class Map(object):
         self.rect_list = []
         self.vector_list = []
         self.rect_list = []
-
-
+        self.cloud_list = []
+        for i in range(0,20):
+            temp_x = i * x_res/20
+            for i in range (0,12):
+                temp_y = i * y_res/12
+                self.cloud_list.append(FogOfWar(temp_x, temp_y))
         self.clock = pygame.time.Clock()
         for ship in self.ship_list:
             ship.scan()
@@ -56,6 +61,11 @@ class Map(object):
             y_vec = random.randint(0, 10)
             self.rect_list[num].append(numpy.array([x_vec, y_vec]))
 
+    def ShowFOW(self):
+        for cloud in self.cloud_list:
+            cloud.image.set_alpha(cloud.opacity)
+            self.screen.blit(cloud.image, [cloud.x_coord, cloud.y_coord])
+
     def show_objects(self):
         for iceberg in self.iceberg_list:
             self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
@@ -77,6 +87,12 @@ class Map(object):
                     pygame.draw.circle(self.screen, ship.colour, sonar.final_coords, 2)
                 else:
                     pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x, sonar.rect_y], 2)
+                for cloud in self.cloud_list:
+                    if sonar.rect_x-50<= cloud.x_coord <= sonar.rect_x+50:
+                        if sonar.rect_y-50 <= cloud.y_coord <= sonar.rect_y+50:
+                            cloud.opacity -= 30
+                            if cloud.opacity < 50:
+                                self.cloud_list.remove(cloud)
 
 
     def Run(self):
@@ -90,6 +106,7 @@ class Map(object):
             self.screen.blit(self.background_image, [0, 0])
             self.show_objects()
             self.create_grid()
+            self.ShowFOW()
             if show == True:
                 for iceberg in self.iceberg_list:
                     self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])

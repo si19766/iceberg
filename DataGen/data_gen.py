@@ -4,8 +4,8 @@ import numpy
 # LIMITS
 IcebergX_CoordLim = 1920
 IcebergY_CoordLim = 1080
-LowerIceberg_DimenLim = 50
-UpperIceberg_DimenLim = 200
+LowerIceberg_DimenLim = 1
+UpperIceberg_DimenLim = 250
 
 # FUNCTIONS
 def IcebergGen():
