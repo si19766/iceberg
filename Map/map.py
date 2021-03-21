@@ -57,8 +57,6 @@ class Map(object):
 
 
     def show_objects(self):
-        for iceberg in self.iceberg_list:
-            self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
         for ship in self.ship_list:
             self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
             for sonar in ship.sonar_list:
@@ -71,12 +69,22 @@ class Map(object):
         pygame.init()
         self.define_rects()
         self.define_vectors()
+        show = False
         while running:
             self.screen.blit(self.background_image, [0, 0])
             self.show_objects()
             self.create_grid()
+            if show == True:
+                for iceberg in self.iceberg_list:
+                    self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
 
             for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w:
+                        show = True
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_w:
+                        show = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         running = False

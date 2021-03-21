@@ -23,7 +23,7 @@ def ShipGen():
 
 # Randomly generates iceberg dimensions
 def DimensionGenerator ():
-    dimension = int(numpy.random.normal(125, 25, None))
+    dimension = int(numpy.random.normal(75, 12, None))
     return dimension
 
 # Creates a point randomly of the iceberg location
