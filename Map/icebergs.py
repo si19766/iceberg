@@ -7,7 +7,7 @@ def LoadImages():
     """Function to speed up the loading of images
     Loads all images before they are assigned to their classes"""
     image_list = []
-    for num in range(15):
+    for num in range(19):
         image_list.append(Loadify("Map/IcebergPics/image" + str(num) + ".png"))
     return image_list
 
@@ -31,7 +31,7 @@ def SpawnIcebergs(NumIcebergs, ShipList):
 
 def RandomImage(ImageList):
     """chooses a random image from the list"""
-    randomint = random.randint(0, 14)
+    randomint = random.randint(0, 18)
     image = ImageList[randomint]
     return image
 
