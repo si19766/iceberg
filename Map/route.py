@@ -11,20 +11,20 @@ def SetSailSpeed(ship):
     if x_move and y_move != 0:
         if y_move < 0 and x_move < 0:
             angle = math.tan(y_move / x_move)
-            x_speed = cos(angle) * -max_speed
-            y_speed = sin(angle) * max_speed
+            x_speed = math.cos(angle) * -max_speed
+            y_speed = math.sin(angle) * max_speed
         elif y_move < 0 and x_move > 0:
             angle = math.tan(y_move / x_move)
-            x_speed = cos(angle) * max_speed
-            y_speed = sin(angle) * max_speed
+            x_speed = math.cos(angle) * max_speed
+            y_speed = math.sin(angle) * max_speed
         elif y_move > 0 and x_move < 0:
             angle = math.tan(x_move / y_move)
-            x_speed = sin(angle) * -max_speed
-            y_speed = cos(angle) * max_speed
+            x_speed = math.sin(angle) * -max_speed
+            y_speed = math.cos(angle) * max_speed
         elif y_move > 0 and x_move > 0:
             angle = math.tan(x_move / y_move)
-            x_speed = sin(angle) * max_speed
-            y_speed = cos(angle) * max_speed
+            x_speed = math.sin(angle) * max_speed
+            y_speed = math.cos(angle) * max_speed
         else:
             x_speed = max_speed
 
