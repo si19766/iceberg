@@ -2,6 +2,8 @@ import pygame
 from Map.icebergs import SpawnIcebergs
 from Map.ships import SpawnShips
 from tools import Loadify, TransformImage
+from Map.icebergs import Iceberg
+import math
 import random
 import numpy
 
@@ -70,7 +72,8 @@ class Map(object):
             for sonar in ship.sonar_list:
                 pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x,sonar.rect_y], 2)
                 sonar.Update(self.iceberg_list)
-
+                if sonar.final_coords != [0,0] and sonar.change_x == 0 and sonar.change_y == 0:
+                    pygame.draw.circle(self.screen, ship.colour, sonar.final_coords, 2)
 
 
     def Run(self):
@@ -86,9 +89,8 @@ class Map(object):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         running = False
-            self.clock.tick(200)
+            self.clock.tick(100)
             pygame.display.update()
-
         pygame.quit()
         quit()
 
