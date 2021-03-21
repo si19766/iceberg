@@ -1,25 +1,28 @@
 import pygame
 import math
-from DataGen.data_gen import ShipGen
+from DataGen.data_gen import LocationGenerator
 from tools import Loadify, TransformImage
 
 def SpawnShips(NumShips):
     ShipList = []
     for i in range(NumShips):
-        ShipCoords = ShipGen()
+        ShipCoords = LocationGenerator()
+        DestinationCoords = LocationGenerator()
         Frequency = i+1
         ShipColour = ((255/NumShips)*(i+1),(255/(NumShips*2))*(i),(255/(NumShips*6))*(i))
-        Boat = Ship(ShipCoords[0], ShipCoords[1], Frequency, "Map/Ship.png", ShipColour)
+        Boat = Ship(ShipCoords[0], ShipCoords[1], DestinationCoords[0], DestinationCoords[1], Frequency, "Map/Ship.png", ShipColour)
         ShipList.append(Boat)
     return ShipList
 
 class Ship(object):
-    def __init__(self, x_coord, y_coord, frequency, image, colour):
+    def __init__(self, x_coord, y_coord, x_dest, y_dest, frequency, image, colour):
         self.x_dimen, self.y_dimen = 25,90
         self.x_coord, self.y_coord = x_coord, y_coord
+        self.x_speed, self.y_speed = 0,0
+        self.x_destination, self. y_destination = x_dest, y_dest
+        self.sailing = False
         self.image = Loadify(image)
         self.image = TransformImage(self.image, self.x_dimen, self.y_dimen)
-        # Ships unique frequency
         self.frequency = frequency
         self.colour = colour
         self.sonar_list = []
@@ -32,6 +35,13 @@ class Ship(object):
             shoot_angle = i/5
             self.sonar_list.append(sonar(self.x_coord+15, self.y_coord+25, shoot_angle, self.frequency))
 
+    def sail(self):
+        if self.sailing == False:
+            self.sailing = True
+            self.x_coord += self.x_speed
+            self.y_coord += self.y_speed
+        if self.x_coord == self.x_destination and self.y_coord == self.y_destination:
+            self.sailing = False
 
 class sonar(object):
 
