@@ -2,7 +2,6 @@ import pygame
 import math
 from DataGen.data_gen import LocationGenerator
 from tools import Loadify, TransformImage
-
 def SpawnShips(NumShips):
     ShipList = []
     for i in range(NumShips):
@@ -20,8 +19,6 @@ class Ship(object):
         self.x_coord, self.y_coord = x_coord, y_coord
         self.x_speed, self.y_speed = 0,0
         self.max_speed = 0.1
-        self.x_destination, self. y_destination = x_coord, y_coord
-        self.x_finaldestination, self.x_finaldestination = x_dest, y_dest
         self.sailing = False
         self.image = Loadify(image)
         self.image = TransformImage(self.image, self.x_dimen, self.y_dimen)
@@ -30,6 +27,8 @@ class Ship(object):
         self.sonar_list = []
         self.detection_list = []
         self.detection_points = []
+        self.x_finaldestination, self.y_finaldestination = x_dest, y_dest
+        self.x_destination, self. y_destination = x_coord, y_coord
 
     def scan(self):
         # Generate a ring of lasers around the ship which are moving away from the ship at a certain angle.
