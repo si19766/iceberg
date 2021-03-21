@@ -44,3 +44,4 @@ class Iceberg(object):
         self.image = TransformImage(image, x_dimen, y_dimen)
         self.rect = pygame.Rect(x_coord, y_coord, x_dimen, y_dimen)
 
+

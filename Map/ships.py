@@ -15,7 +15,7 @@ def SpawnShips(NumShips):
 
 class Ship(object):
     def __init__(self, x_coord, y_coord, frequency, image, colour):
-        self.x_dimen, self.y_dimen = 50,50
+        self.x_dimen, self.y_dimen = 20,75
         self.x_coord, self.y_coord = x_coord, y_coord
         self.image = Loadify(image)
         self.image = TransformImage(self.image, self.x_dimen, self.y_dimen)
@@ -23,7 +23,8 @@ class Ship(object):
         self.frequency = frequency
         self.colour = colour
         self.sonar_list = []
-
+        self.detection_list = []
+        self.detection_points = []
     def scan(self):
         # Generate a ring of lasers around the ship which are moving away from the ship at a certain angle.
         for i in range(1800):
@@ -49,16 +50,22 @@ class sonar(object):
 
         # Frequency
         self.freq = frequency
-
+        self.counter = 0
+        self.counter_start = False
+        self.final_coords = [0,0]
     def Update(self, Iceberg_List):
         # New position for bullet
         for bergs in Iceberg_List:
             if bergs.rect.collidepoint(self.rect_x, self.rect_y):
                 self.change_x = self.x_speed * -1
                 self.change_y = self.y_speed * -1
+                self.counter_start = True
+                self.final_coords= [self.rect_x,self.rect_y]
         if self.change_x == (self.x_speed * -1) and (self.spawn_x + 10) >= self.rect_x >= (self.spawn_x - 10):
             if self.change_y == (self.y_speed * -1) and (self.spawn_y + 10) >= self.rect_y >= (self.spawn_y - 10):
                 self.change_x = 0
                 self.change_y = 0
+        if self.counter_start:
+            self.counter += 1
         self.rect_x -= self.change_x
         self.rect_y -= self.change_y
