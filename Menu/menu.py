@@ -4,7 +4,6 @@ from Map.map import Map
 from Menu.savesettings import GetRes
 from Menu.parameter_menu import ParameterMenu
 
-
 class Menu():
     def __init__(self, screen):
         self.background_image = Loadify("Menu/iceburg.jpg")
@@ -14,7 +13,6 @@ class Menu():
         self.LBLUE = (0, 204, 204)
         self.BLACK = (0, 0, 0)
         self.font1 = pygame.font.SysFont('Ariel', 35)
-
 
     def MainMenu(self):
 

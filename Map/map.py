@@ -71,11 +71,11 @@ class Map(object):
         for ship in self.ship_list:
             self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
             for sonar in ship.sonar_list:
-                pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x,sonar.rect_y], 2)
                 sonar.Update(self.iceberg_list)
                 if sonar.final_coords != [0,0] and sonar.change_x == 0 and sonar.change_y == 0:
                     pygame.draw.circle(self.screen, ship.colour, sonar.final_coords, 2)
-
+                else:
+                    pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x, sonar.rect_y], 2)
 
     def Run(self):
         running = True
