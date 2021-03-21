@@ -2,12 +2,13 @@ import pygame
 from Map.icebergs import SpawnIcebergs
 from Map.ships import SpawnShips
 from Map.ShadowLayer import FogOfWar
+from Map.route import SetSailSpeed
 from tools import Loadify, TransformImage
 from Map.icebergs import Iceberg
 import math
 import random
 import numpy
-from Menu.parameter_menu import ParameterMenu
+from Menu.savesettings import GetValues
 
 class Map(object):
     """Class that shows the map with all corresponding objects"""
@@ -20,9 +21,8 @@ class Map(object):
         self.iceberg_colour = (255, 255, 255)
         self.iceberg_rect = pygame.Rect(50, 50, 50, 50)
         self.screen = screen  # imported from Menu
-        pmen = ParameterMenu(0,0)
-        self.ship_list = SpawnShips(pmen.boatNumber) # creates a list
-        self.iceberg_list = SpawnIcebergs(pmen.icebergNumber, self.ship_list)  # creates a list
+        self.ship_list = SpawnShips(int(GetValues()[0])) # creates a list
+        self.iceberg_list = SpawnIcebergs(int(GetValues()[1]), self.ship_list)  # creates a list
         self.rect_list = []
         self.vector_list = []
         self.rect_list = []
@@ -94,6 +94,8 @@ class Map(object):
                             if cloud.opacity < 50:
                                 self.cloud_list.remove(cloud)
 
+            SetSailSpeed(ship)
+            ship.sail()
 
     def Run(self):
         running = True

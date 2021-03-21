@@ -37,6 +37,13 @@ class ParameterMenu(object):
 
         return centre
 
+    def saveValues(self, numBoat, numBerg):
+        parameter_file = open("Menu/parameter_menu.txt", "w")
+        parameter_file.write(str(numBoat) + "\n" + str(numBerg))
+        parameter_file.close()
+        print("called")
+
+
     def changeBoatNum(self, num):
         rendered_font = RenderFont(self.font1, str(num), self.BLACK)
         self.screen.blit(rendered_font, [1500,250])
@@ -51,12 +58,16 @@ class ParameterMenu(object):
         percentage = ((new_x - self.slider_left_coord) / (self.slider_right_coord - self.slider_left_coord))
         if slider == 0:
             self.boatNumber = int(4*percentage)
+            if self.boatNumber == 0:
+               self.boatNumber = 1
             self.changeBoatNum(self.boatNumber)
             self.changeIcebergNum(self.icebergNumber)
+            self.saveValues(self.boatNumber, self.icebergNumber)
         if slider == 1:
             self.icebergNumber = int(percentage * 100)
             self.changeBoatNum(self.boatNumber)
             self.changeIcebergNum(self.icebergNumber)
+            self.saveValues(self.boatNumber, self.icebergNumber)
 
     def Control(self, click):
         """Function that lets user adjust volume levels"""
