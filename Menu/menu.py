@@ -47,7 +47,7 @@ class Menu():
                 if num == 0:
                     self.text = "Start Simulation"
                 elif num == 1:
-                    self.text = ".."
+                    self.text = "Parameter Menu"
                 rendered_font = RenderFont(self.font1, self.text, self.BLACK)
                 self.screen.blit(rendered_font, [ButtonCentre(button_width), ButtonSpacing(number_of_buttons) * (num+1) - (button_height/2)])
 
