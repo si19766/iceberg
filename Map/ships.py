@@ -15,7 +15,7 @@ def SpawnShips(NumShips):
 
 class Ship(object):
     def __init__(self, x_coord, y_coord, frequency, image, colour):
-        self.x_dimen, self.y_dimen = 20,75
+        self.x_dimen, self.y_dimen = 25,90
         self.x_coord, self.y_coord = x_coord, y_coord
         self.image = Loadify(image)
         self.image = TransformImage(self.image, self.x_dimen, self.y_dimen)
