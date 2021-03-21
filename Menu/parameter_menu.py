@@ -131,6 +131,7 @@ class ParameterMenu(object):
         self.slider_list = [
             pygame.Rect(100, 200, 20, 20),
             pygame.Rect(int(self.Slider_Calc()[1]), int(((self.height / self.height_divider) * 4)), 20, 20)]
+        print(self.slider_list)
 
     def DisplayWindow(self):
         self.Bars()
@@ -140,4 +141,3 @@ class ParameterMenu(object):
             self.screen.fill(self.LBLUE)
             click = self.Control(click)
             pygame.display.update()
-            pygame.display.flip()

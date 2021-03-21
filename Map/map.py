@@ -80,7 +80,7 @@ class Map(object):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         running = False
-            self.clock.tick(200)
+            self.clock.tick(100)
             pygame.display.update()
         pygame.quit()
         quit()
