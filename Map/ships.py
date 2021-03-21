@@ -37,12 +37,8 @@ class Ship(object):
             self.sonar_list.append(sonar(self.x_coord+11, self.y_coord+25, shoot_angle, self.frequency))
 
     def sail(self):
-        if self.sailing == False:
-            self.sailing = True
-            self.x_coord += self.x_speed
-            self.y_coord += self.y_speed
-        if self.x_coord == self.x_destination and self.y_coord == self.y_destination:
-            self.sailing = False
+        self.x_coord += self.x_speed
+        self.y_coord += self.y_speed
 
 class sonar(object):
 

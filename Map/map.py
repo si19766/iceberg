@@ -84,6 +84,7 @@ class Map(object):
             self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
             if  ship.x_destination -10 <= ship.x_coord <- ship.x_destination +10:
                 if ship.y_destination - 10 <= ship.y_coord < - ship.y_destination + 10:
+                    PENIS=True
             for sonar in ship.sonar_list:
                 sonar.Update(self.iceberg_list)
                 if sonar.final_coords != [0,0] and sonar.change_x == 0 and sonar.change_y == 0:
