@@ -29,7 +29,7 @@ class Ship(object):
         # Generate a ring of lasers around the ship which are moving away from the ship at a certain angle.
         for i in range(1800):
             shoot_angle = i/5
-            self.sonar_list.append(sonar(self.x_coord, self.y_coord, shoot_angle, self.frequency))
+            self.sonar_list.append(sonar(self.x_coord+11, self.y_coord+25, shoot_angle, self.frequency))
 
 
 class sonar(object):
