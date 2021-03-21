@@ -15,6 +15,7 @@ class Map(object):
     def __init__(self, screen, x_res = 1920, y_res = 1080):
         self.BLACK = (0, 0, 0)
         self.WHITE = (255,255,255)
+        self.GREEN = (0,255,0)
         self.background_image = Loadify("Background.png")
         self.background_image = TransformImage(self.background_image, x_res, y_res)
         self.grid_colour = (0, 0, 0)  # black
@@ -121,6 +122,8 @@ class Map(object):
             self.show_objects()
             self.create_grid()
             self.ShowFOW()
+            for ship in self.ship_list:
+                pygame.draw.circle(self.screen, self.GREEN, [ship.x_finaldestination, ship.y_finaldestination], 5)  # Draws endpoint
             if show == True:
                 for iceberg in self.iceberg_list:
                     self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
@@ -140,14 +143,15 @@ class Map(object):
 
             #Pings after a set amount of ticks
             count += 1
-            if count == 400:
-                for ship in self.ship_list:
-                    New_Coords = RouteCalculation(ship.sonar_list,math.atan(ship.y_finaldestination/ship.x_finaldestination),ship.x_coord,ship.y_coord)
-                    ship.x_coord = New_Coords[0]
-                    ship.y_coord = New_Coords[1]
+            if count == 200:
+                 for ship in self.ship_list:
+                    New_Coords = RouteCalculation(ship.sonar_list,SetSailSpeed(ship),ship.x_coord,ship.y_coord) #math.atan(ship.y_finaldestination/ship.x_finaldestination)
+                    ship.x_destination = New_Coords[0]
+                    ship.y_destination = New_Coords[1]
                     ship.sonar_list = []
                     ship.scan()
-                count = 0
+
+                 count = 0
             #Sets tickrate
             self.clock.tick(100)
             pygame.display.update()

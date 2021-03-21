@@ -9,6 +9,7 @@ def SetSailSpeed(ship):
     y_move = y_dest-y_coord
     x_speed = 0
     y_speed = 0
+    angle = 0
     if x_move and y_move != 0:
         if y_move < 0 and x_move < 0:
             angle = math.atan(y_move / x_move)
@@ -32,3 +33,4 @@ def SetSailSpeed(ship):
     ship.x_speed = x_speed
     ship.y_speed = y_speed
 
+    return angle

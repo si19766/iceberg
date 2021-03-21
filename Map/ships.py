@@ -8,7 +8,7 @@ def SpawnShips(NumShips):
     ShipList = []
     for i in range(NumShips):
         ShipCoords = LocationGenerator()
-        DestinationCoords = LocationGenerator()
+        DestinationCoords = [1800, 100] #LocationGenerator()
         Frequency = i+1
         ShipColour = ((255/NumShips)*(i+1),(255/(NumShips*2))*(i),(255/(NumShips*6))*(i))
         Boat = Ship(ShipCoords[0], ShipCoords[1], DestinationCoords[0], DestinationCoords[1], Frequency, "Map/Ship.png", ShipColour)
@@ -21,8 +21,7 @@ class Ship(object):
         self.x_dimen, self.y_dimen = 25,90
         self.x_coord, self.y_coord = x_coord, y_coord
         self.x_speed, self.y_speed = 0,0
-        self.max_speed = 0.1
-        self.sailing = False
+        self.max_speed = 0.5
         self.image = Loadify(image)
         self.image = TransformImage(self.image, self.x_dimen, self.y_dimen)
         self.frequency = frequency
@@ -31,7 +30,8 @@ class Ship(object):
         self.detection_list = []
         self.detection_points = []
         self.x_finaldestination, self.y_finaldestination = x_dest, y_dest
-        self.x_destination, self. y_destination = x_coord, y_coord
+        self.x_destination, self. y_destination = x_dest, y_dest
+
 #Starts ping with 900 sonar blips
     def scan(self):
         # Generate a ring of lasers around the ship which are moving away from the ship at a certain angle.
