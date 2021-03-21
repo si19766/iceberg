@@ -37,7 +37,7 @@ def RandomImage(ImageList):
 
 
 class Iceberg(object):
-    def __init__(self, x_dimen, y_dimen, x_coord, y_coord, image):
+    def __init__(self, x_dimen, y_dimen, x_coord=0, y_coord=0, image=0):
         self.iceberg_colour = (255, 255, 255)
         self.x_dimen, self.y_dimen = x_dimen, y_dimen
         self.x_coord, self.y_coord = x_coord, y_coord
