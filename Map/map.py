@@ -18,8 +18,9 @@ class Map(object):
         self.screen = screen  # imported from Menu
         self.ship_list = SpawnShips(3) # creates a list
         self.iceberg_list = SpawnIcebergs(40,self.ship_list)  # creates a list
-        self.rect_list = []
+        self.gird_list = []
         self.vector_list = []
+        self.rect_list = []
 
 
         self.clock = pygame.time.Clock()
@@ -39,13 +40,12 @@ class Map(object):
     def define_rects(self):
         x_length = 1920/10
         y_length = 1080/8
-        for num in range(80):
-            rect_corners = []
-            rect_corners.append([num*x_length, num*y_length])
-            rect_corners.append([(num+1)*x_length, num*y_length])
-            rect_corners.append([num*x_length, (num+1)*y_length])
-            rect_corners.append([(num+1)*x_length, (num+1)*y_length])
-            self.rect_list.append(rect_corners)
+        for y_num in range(8):
+            for x_num in range(10):
+                rect_corners = []
+                rect_corners.append(pygame.Rect(x_num*x_length, y_num*y_length, x_length, y_length))
+                self.rect_list.append(rect_corners)
+        print(self.rect_list)
 
     def define_vectors(self):
         for num in range(80):
@@ -53,15 +53,24 @@ class Map(object):
             y_vec = random.randint(0, 10)
             self.rect_list[num].append(numpy.array([x_vec, y_vec]))
 
-
     def show_objects(self):
         for iceberg in self.iceberg_list:
             self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
+            for rect, vector in self.rect_list:
+                if rect.collidepoint(iceberg.x_coord, iceberg.y_coord):
+                    print(vector[0])
+                    iceberg.x_vec = vector[0]
+                    iceberg.y_vec = vector[1]
+
+            iceberg.x_coord += iceberg.x_vec * 0.005
+            iceberg.y_coord += iceberg.y_vec * 0.005
+
         for ship in self.ship_list:
             self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
             for sonar in ship.sonar_list:
                 pygame.draw.circle(self.screen, ship.colour, [sonar.rect_x,sonar.rect_y], 2)
                 sonar.Update(self.iceberg_list)
+
 
 
     def Run(self):
@@ -73,7 +82,6 @@ class Map(object):
             self.screen.blit(self.background_image, [0, 0])
             self.show_objects()
             self.create_grid()
-
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
