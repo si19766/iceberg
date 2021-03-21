@@ -2,8 +2,8 @@ import random
 import numpy
 
 # LIMITS
-X_CoordLim = 1920
-Y_CoordLim = 1080
+X_CoordLim = 1820
+Y_CoordLim = 980
 LowerIceberg_DimenLim = 1
 UpperIceberg_DimenLim = 250
 

@@ -74,6 +74,7 @@ class Map(object):
 
 
     def show_objects(self):
+        '''show objects blits objects and updates window'''
         for iceberg in self.iceberg_list:
             #Refresh the location of icebergs
             self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
@@ -88,9 +89,7 @@ class Map(object):
             iceberg.rect.y = iceberg.y_coord
 
         for ship in self.ship_list:
-            self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])#           if  ship.x_destination -10 <= ship.x_coord <- ship.x_destination +10:
-#                if ship.y_destination - 10 <= ship.y_coord < - ship.y_destination + 10:
- #                   =True
+            self.screen.blit(ship.image, [ship.x_coord, ship.y_coord])
             #Update and move sonar blips
             for sonar in ship.sonar_list:
                 sonar.Update(self.iceberg_list)
@@ -107,7 +106,9 @@ class Map(object):
                                 self.cloud_list.remove(cloud)
 
             SetSailSpeed(ship)
-            '''ship.sail()'''
+            '''Movement of ship turned off as route calculation function required
+            ship.sail()'''
+
 
     #Repeating loop to keep objects on map active and updating
     def Run(self):
@@ -122,8 +123,6 @@ class Map(object):
             self.show_objects()
             self.create_grid()
             self.ShowFOW()
-            '''for ship in self.ship_list:
-                pygame.draw.circle(self.screen, self.GREEN, [ship.x_finaldestination, ship.y_finaldestination], 5)  # Draws endpoint'''
             if show == True:
                 for iceberg in self.iceberg_list:
                     self.screen.blit(iceberg.image, [iceberg.x_coord, iceberg.y_coord])
@@ -155,7 +154,4 @@ class Map(object):
             #Sets tickrate
             self.clock.tick(100)
             pygame.display.update()
-
-        pygame.quit()
-        quit()
 
