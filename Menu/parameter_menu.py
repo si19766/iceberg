@@ -23,6 +23,8 @@ class ParameterMenu(object):
         self.slider_left_coord = (self.width / 2) - (self.slider_width / 2)
         self.slider_right_coord = (self.width / 2) + (self.slider_width / 2)
         self.font1 = pygame.font.SysFont('Ariel', 35)
+        self.ships_font = RenderFont(self.font1, "No. of Ships", self.BLACK)
+        self.iceberg_font = RenderFont(self.font1, "No. of Icebergs", self.BLACK)
 
     def SliderMove(self, new_x, slider_number):
 
@@ -77,6 +79,7 @@ class ParameterMenu(object):
             pygame.draw.rect(self.screen, self.BLACK, bars)
 
         for sliders in self.slider_list:
+            """Goes through the list of sliders"""
             pygame.draw.rect(self.screen, self.RED, sliders)
             if sliders.collidepoint(mx, my):
                 if click:
@@ -148,18 +151,16 @@ class ParameterMenu(object):
             pygame.Rect(int(self.slider_left_coord), int(((self.height / height_divider) * 4) + y_offset), slider_width,
                         slider_height)]
 
-    def SlidersInit(self):
 
+    def SlidersInit(self):
+        """"Initiliases slider list"""
         self.slider_list = [
             pygame.Rect(int(self.Slider_Calc()), int(((self.height / self.height_divider) * 2)), 20, 20),
             pygame.Rect(int(self.Slider_Calc()), int(((self.height / self.height_divider) * 4)), 20, 20)]
 
 
-
-
-
-
     def DisplayWindow(self):
+        """Function that displays all parts for the slider screen"""
         self.Bars()
         self.SlidersInit()
         click = False
@@ -168,5 +169,7 @@ class ParameterMenu(object):
         self.changeBoatNum(self.boatNumber)
         while self.OnParameterMenu:
             click = self.Control(click)
+            self.screen.blit(self.ships_font, [880, 200])
+            self.screen.blit(self.iceberg_font, [850, 480])
             pygame.display.update()
             pygame.display.flip()
