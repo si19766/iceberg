@@ -140,8 +140,8 @@ class ParameterMenu(object):
     def SlidersInit(self):
 
         self.slider_list = [
-            pygame.Rect(100, 200, 20, 20),
-            pygame.Rect(int(self.Slider_Calc()[1]), int(((self.height / self.height_divider) * 4)), 20, 20)]
+            pygame.Rect(int(self.Slider_Calc()), int(((self.height / self.height_divider) * 2)), 20, 20),
+            pygame.Rect(int(self.Slider_Calc()), int(((self.height / self.height_divider) * 4)), 20, 20)]
 
 
 
